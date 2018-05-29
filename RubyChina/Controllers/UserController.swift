@@ -63,14 +63,15 @@ class UserController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return Defaults.userId != nil ? 3 : 2
+        return Defaults.userId != nil ? 4 : 3
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0: return 1
         case 1: return 4
-        case 2: return 1
+        case 2: return 3
+        case 3: return 1
         default: return 0
         }
     }
@@ -98,26 +99,45 @@ class UserController: UIViewController, UITableViewDataSource, UITableViewDelega
             case 0:
                 let cell = UITableViewCell()
                 cell.accessoryType = .disclosureIndicator
+                cell.textLabel?.text = "我的评价"
+                return cell
+            case 1:
+                let cell = UITableViewCell()
+                cell.accessoryType = .disclosureIndicator
+                cell.textLabel?.text = "我的已读"
+                return cell
+            case 2:
+                let cell = UITableViewCell()
+                cell.accessoryType = .disclosureIndicator
+                cell.textLabel?.text = "我的发帖"
+                return cell
+            case 3:
+                let cell = UITableViewCell()
+                cell.accessoryType = .disclosureIndicator
+                cell.textLabel?.text = "我的回复"
+                return cell
+            default: Void()
+            }
+        case 2:
+            switch indexPath.row {
+            case 0:
+                let cell = UITableViewCell()
+                cell.accessoryType = .disclosureIndicator
                 cell.textLabel?.text = "节点"
                 return cell
             case 1:
                 let cell = UITableViewCell()
                 cell.accessoryType = .disclosureIndicator
-                cell.textLabel?.text = "发帖"
-                return cell
-            case 2:
-                let cell = UITableViewCell()
-                cell.accessoryType = .disclosureIndicator
                 cell.textLabel?.text = "反馈"
                 return cell
-            case 3:
+            case 2:
                 let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
                 cell.detailTextLabel?.text = "\(URLCache.shared.currentDiskUsage / 1024 / 1024) MB"
                 cell.textLabel?.text = "缓存"
                 return cell
             default: Void()
             }
-        case 2:
+        case 3:
             let cell = UITableViewCell()
             cell.textLabel?.text = "注销"
             cell.textLabel?.textAlignment = .center
@@ -136,7 +156,7 @@ class UserController: UIViewController, UITableViewDataSource, UITableViewDelega
             webViewController.path = "\(Helper.baseURL.absoluteString)/\(user["login"])"
             webViewController.title = user["login"].string
             splitViewController?.showDetailViewController(UINavigationController(rootViewController: webViewController), sender: self)
-        case 1:
+        case 2:
             switch indexPath.row {
             case 0:
                 navigationController?.pushViewController(NodesController(), animated: true)
@@ -159,7 +179,7 @@ class UserController: UIViewController, UITableViewDataSource, UITableViewDelega
                 }
             default: Void()
             }
-        case 2:
+        case 3:
             tableView.deselectRow(at: indexPath, animated: true)
             let alertController = UIAlertController(title: "确定注销吗？", message: "注销后可以重新登录。", preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))

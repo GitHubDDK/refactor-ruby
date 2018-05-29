@@ -102,6 +102,7 @@ class SignInController: UIViewController, UITableViewDataSource, UITableViewDele
         case 1:
             let cell = UITableViewCell()
             cell.textLabel?.text = "登录"
+            cell.textLabel?.textAlignment = .center
             cell.textLabel?.textColor = Helper.tintColor
             return cell
         default: Void()
