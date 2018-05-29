@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AFNetworkActivityIndicatorManager.shared().isEnabled = true
 
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = SplitViewController()
+        window?.rootViewController = MainViewController()
         window?.tintColor = Helper.tintColor
         window?.makeKeyAndVisible()
 

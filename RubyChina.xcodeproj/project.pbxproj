@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B0C7592B20BD388400BC321A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C7592A20BD388400BC321A /* MainViewController.swift */; };
 		B21B37C41E0443AA00DD4FF3 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21B37C31E0443AA00DD4FF3 /* JSON.swift */; };
 		B22DE0DF1B1951B200888C0D /* ComposeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22DE0DE1B1951B200888C0D /* ComposeController.swift */; };
 		B24128AC1B2D3FDC0006AEF9 /* DateTools.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B24128AB1B2D3FDC0006AEF9 /* DateTools.bundle */; };
@@ -47,6 +48,7 @@
 /* Begin PBXFileReference section */
 		66F00C90339BFEFF2988116C /* Pods-RubyChina.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RubyChina.release.xcconfig"; path = "Pods/Target Support Files/Pods-RubyChina/Pods-RubyChina.release.xcconfig"; sourceTree = "<group>"; };
 		9D16BBFE6D5CF11FD5D5AEFA /* Pods-RubyChina.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RubyChina.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RubyChina/Pods-RubyChina.debug.xcconfig"; sourceTree = "<group>"; };
+		B0C7592A20BD388400BC321A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B21B37C31E0443AA00DD4FF3 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		B22DE0DE1B1951B200888C0D /* ComposeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeController.swift; sourceTree = "<group>"; };
 		B24128AB1B2D3FDC0006AEF9 /* DateTools.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = DateTools.bundle; path = ../Pods/DateTools/DateTools/DateTools.bundle; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 		B2D221F11B0F3EC200007E79 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B0C7592A20BD388400BC321A /* MainViewController.swift */,
 				B22DE0DE1B1951B200888C0D /* ComposeController.swift */,
 				B2F2180A1B18B55600150DDF /* NodesController.swift */,
 				B2F2180B1B18B55600150DDF /* SignInController.swift */,
@@ -388,6 +391,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2F217FA1B18B53600150DDF /* Defaults.swift in Sources */,
+				B0C7592B20BD388400BC321A /* MainViewController.swift in Sources */,
 				B2F218081B18B54000150DDF /* FailureView.swift in Sources */,
 				B2F218141B18B55600150DDF /* UserController.swift in Sources */,
 				B2F218091B18B54000150DDF /* EmptyView.swift in Sources */,
