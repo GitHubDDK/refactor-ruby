@@ -20,6 +20,7 @@ class SplitViewController: UISplitViewController, UISplitViewControllerDelegate 
         delegate = self
         preferredDisplayMode = .allVisible
         view.backgroundColor = Helper.backgroundColor
+        
     }
 
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {

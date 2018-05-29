@@ -82,6 +82,14 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
                 registerForPreviewing(with: self, sourceView: view)
             }
         }
+        
+        let navigation = UINavigationController(rootViewController: SignInController())
+//            navigation.navigationBar.tintColor = UIColor.white //item 字体颜色
+//            navigation.navigationBar.barTintColor = UIColor.yellow //背景颜色
+//            let dict:NSDictionary = [NSForegroundColorAttributeName: UIColor.white,NSFontAttributeName : UIFont.boldSystemFont(ofSize: 18)]
+//            //标题颜色
+//            navigation.navigationBar.titleTextAttributes = dict as? [String : AnyObject]
+        self.present(navigation, animated: true, completion: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {

@@ -36,11 +36,11 @@ class MainViewController: UITabBarController {
     private func addChildVC(childVC: UIViewController, childTitle: String, imageName: String, selectedImageName:String)
     {
         let navigation = UINavigationController(rootViewController: childVC)
-        navigation.navigationBar.tintColor = UIColor.white //item 字体颜色
-        navigation.navigationBar.barTintColor = UIColor.yellow //背景颜色
-        let dict:NSDictionary = [NSForegroundColorAttributeName: UIColor.white,NSFontAttributeName : UIFont.boldSystemFont(ofSize: 18)]
+//        navigation.navigationBar.tintColor = UIColor.white //item 字体颜色
+//        navigation.navigationBar.barTintColor = UIColor.yellow //背景颜色
+//        let dict:NSDictionary = [NSForegroundColorAttributeName: UIColor.white,NSFontAttributeName : UIFont.boldSystemFont(ofSize: 18)]
         //标题颜色
-        navigation.navigationBar.titleTextAttributes = dict as? [String : AnyObject]
+//        navigation.navigationBar.titleTextAttributes = dict as? [String : AnyObject]
         childVC.title = childTitle
         childVC.tabBarItem.tag = 1
         childVC.tabBarItem.image = UIImage(named: imageName)?.withRenderingMode(.alwaysOriginal)
@@ -78,11 +78,11 @@ class MainViewController: UITabBarController {
     
     @objc private func addButtonClick(){
         let navigation = UINavigationController(rootViewController: UserController())
-        navigation.navigationBar.tintColor = UIColor.white //item 字体颜色
-        navigation.navigationBar.barTintColor = UIColor.yellow //背景颜色
-        let dict:NSDictionary = [NSForegroundColorAttributeName: UIColor.white,NSFontAttributeName : UIFont.boldSystemFont(ofSize: 18)]
-        //标题颜色
-        navigation.navigationBar.titleTextAttributes = dict as? [String : AnyObject]
+//        navigation.navigationBar.tintColor = UIColor.white //item 字体颜色
+//        navigation.navigationBar.barTintColor = UIColor.yellow //背景颜色
+//        let dict:NSDictionary = [NSForegroundColorAttributeName: UIColor.white,NSFontAttributeName : UIFont.boldSystemFont(ofSize: 18)]
+//        //标题颜色
+//        navigation.navigationBar.titleTextAttributes = dict as? [String : AnyObject]
         self.present(navigation, animated: true, completion: nil)
         print("111111")
     }
