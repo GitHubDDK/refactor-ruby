@@ -20,6 +20,7 @@ class UserController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 
     override func viewDidLoad() {
+        //用户
         title = "账号"
         view.backgroundColor = Helper.backgroundColor
 
