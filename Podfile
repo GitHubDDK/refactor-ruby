@@ -16,4 +16,5 @@ target :RubyChina do
     pod 'Alamofire'
     pod 'TPKeyboardAvoiding'
     pod 'UINavigationBar+Addition'
+    pod 'SnapKit', '~> 3.2'
 end
