@@ -12,6 +12,7 @@ import UIKit
 class TopicCell: UITableViewCell {
 
     var topic: JSON = [:]
+    var label : UILabel!
 
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -23,6 +24,21 @@ class TopicCell: UITableViewCell {
 
         detailTextLabel?.font = .preferredFont(forTextStyle: .subheadline)
         detailTextLabel?.textColor = .lightGray
+        
+        //创建label1
+        let rect:CGRect = CGRect(x: 300, y: 5, width: 40, height: 20)
+        label = UILabel.init(frame: rect)
+        //设置背景色
+        label.text = "热门"
+        label.textAlignment = NSTextAlignment.center
+        label.backgroundColor = UIColor.orange
+        //设置字体
+        label.font = UIFont.systemFont(ofSize: 15)//正常字体
+        //设置字体颜色
+        label.textColor = UIColor.white
+        self.contentView.addSubview(label)
+       
+        
     }
 
     required init?(coder aDecoder: NSCoder) {
