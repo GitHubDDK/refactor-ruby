@@ -18,7 +18,7 @@ class MainViewController: UITabBarController {
         tabBar.barTintColor = UIColor.white //tabbar 背景颜色
         
         self.addChildVC(childVC: TopicsController(), childTitle: "列表", imageName: "tabbar_1", selectedImageName: "tabbar_selected_1")
-        self.addChildVC(childVC: UserController(), childTitle: "", imageName: "", selectedImageName: "")
+        self.addChildVC(childVC: ComposeController(), childTitle: "", imageName: "", selectedImageName: "")
         self.addChildVC(childVC: UserController(), childTitle: "我", imageName: "tabbar_4", selectedImageName: "tabbar_selected_4")
         
     }
@@ -77,7 +77,7 @@ class MainViewController: UITabBarController {
     }
     
     @objc private func addButtonClick(){
-        let navigation = UINavigationController(rootViewController: UserController())
+        let navigation = UINavigationController(rootViewController: ComposeController())
 //        navigation.navigationBar.tintColor = UIColor.white //item 字体颜色
 //        navigation.navigationBar.barTintColor = UIColor.yellow //背景颜色
 //        let dict:NSDictionary = [NSForegroundColorAttributeName: UIColor.white,NSFontAttributeName : UIFont.boldSystemFont(ofSize: 18)]
