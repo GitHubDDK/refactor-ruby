@@ -64,6 +64,8 @@ class ComposeController: UIViewController, UITableViewDataSource, UITableViewDel
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissNow))
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -242,5 +244,10 @@ class ComposeController: UIViewController, UITableViewDataSource, UITableViewDel
         cells[0].textLabel?.text = "[\(node["name"])]"
         cells[0].textLabel?.textColor = .black
         _ = navigationController?.popToViewController(self, animated: true)
+    }
+    
+    func dismissNow() {
+        dismiss(animated: true, completion: nil)
+//        viewController?.viewWillAppear(false)
     }
 }
