@@ -14,12 +14,12 @@ class MainViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tabBar.tintColor = UIColor.yellow //tabbar 字体颜色
+        tabBar.tintColor = UIColor.init(red: 135/255.0, green: 0, blue: 23/255.0, alpha: 1) //tabbar 字体颜色
         tabBar.barTintColor = UIColor.white //tabbar 背景颜色
         
-        self.addChildVC(childVC: TopicsController(), childTitle: "列表", imageName: "tabbar_1", selectedImageName: "tabbar_selected_1")
+        self.addChildVC(childVC: TopicsController(), childTitle: "列表", imageName: "list", selectedImageName: "list_selected")
         self.addChildVC(childVC: ComposeController(), childTitle: "", imageName: "", selectedImageName: "")
-        self.addChildVC(childVC: UserController(), childTitle: "我", imageName: "tabbar_4", selectedImageName: "tabbar_selected_4")
+        self.addChildVC(childVC: UserController(), childTitle: "我", imageName: "me", selectedImageName: "me_selected")
         
     }
     
