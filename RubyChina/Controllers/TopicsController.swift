@@ -107,11 +107,13 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
     func autoRefresh() {
         if refreshing { return }
         loadingView.show()
+        self.tableView.frame = CGRect(x: 0, y: 0, width: 320, height: 568)
         loadData()
     }
 
     func topRefresh() {
         if refreshing { topRefreshControl.endRefreshing(); return }
+        self.tableView.frame = CGRect(x: 0, y: -60, width: self.tableView.frame.width, height: self.tableView.frame.height)
         topics = []
         loadData()
     }
@@ -143,6 +145,7 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
             self.stopRefresh()
             if JSON(responseObject)["topics"].count == 0 { if self.topics.count == 0 { self.emptyView.show() } else { return } }
             if self.topics.count == 0 { self.tableView.scrollRectToVisible(CGRect(x: 0, y: self.tableView.tableHeaderView?.frame.height ?? 0, width: 1, height: 1), animated: false) }
+            self.tableView.scrollRectToVisible(CGRect(x: 0, y:70, width: 1, height: 1), animated: false) 
             self.topics = JSON(self.topics.arrayValue + JSON(responseObject)["topics"].arrayValue)
             self.tableView.reloadData()
             self.segmentedControl.selectedSegmentIndex = selectedSegmentIndex
@@ -168,6 +171,8 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
         cell.topic = topics[indexPath.row]
         cell.layoutSubviews()
         return 11.5 + cell.textLabel!.frame.height + 5 + cell.detailTextLabel!.frame.height + 11.5
+        
+        
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
