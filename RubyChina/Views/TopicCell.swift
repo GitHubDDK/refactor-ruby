@@ -26,7 +26,8 @@ class TopicCell: UITableViewCell {
         detailTextLabel?.textColor = .lightGray
         
         //创建label1
-        let rect:CGRect = CGRect(x: 300, y: 5, width: 40, height: 20)
+        let screenW = UIScreen.main.applicationFrame.size.width;
+        let rect:CGRect = CGRect(x: screenW - 40, y: 5, width: 40, height: 20)
         label = UILabel.init(frame: rect)
         //设置背景色
         label.text = "热门"

@@ -212,7 +212,15 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         searchBar.setShowsCancelButton(false, animated: true)
     }
-
+    
+    func searchBar(_ searchBar:UISearchBar, textDidChange searchText:String) {
+        
+        parameters["query"].string = searchBar.text != "" ? searchBar.text : nil
+        topics = []
+        tableView.reloadData()
+        autoRefresh()
+    }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         parameters["query"].string = searchBar.text != "" ? searchBar.text : nil

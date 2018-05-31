@@ -52,7 +52,7 @@ class MainViewController: UITabBarController {
         // 1.创建按钮
         let button = UIButton()
         // 2.设置背景颜色
-        button.backgroundColor = UIColor.yellow
+        button.backgroundColor = UIColor.init(red: 135/255.0, green: 0, blue: 23/255.0, alpha: 1)
         // 3.设置图片
         button.setImage(UIImage(named: "tabbar_add"), for:.normal)
 
