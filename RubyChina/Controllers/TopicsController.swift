@@ -179,7 +179,10 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let topicController = TopicController()
         topicController.topic = topics[indexPath.row]
-        splitViewController?.showDetailViewController(UINavigationController(rootViewController: topicController), sender: self)
+//    splitViewController?.showDetailViewController(UINavigationController(rootViewController: topicController), sender: self)
+        
+        self.navigationController?.pushViewController(topicController, animated: true)
+//            splitViewController?.show(topicController, sender: self)
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
