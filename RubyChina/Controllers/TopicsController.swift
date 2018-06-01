@@ -32,6 +32,8 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
     var collectionView : UICollectionView?
     var count = 0;
     
+    let searchBar = UISearchBar()
+    
     
 
 
@@ -51,7 +53,7 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
         tableView.tableFooterView = UIView()
         view.addSubview(tableView)
 
-        let searchBar = UISearchBar()
+//        let searchBar = UISearchBar()
         searchBar.autocapitalizationType = .none
         searchBar.autocorrectionType = .no
         searchBar.delegate = self
@@ -120,15 +122,7 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
         layout.minimumLineSpacing = 10
         layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10)
         
-        var height : Int
-        if nowClassName.count <= 3 {
-            height = 1 * 45 + 10
-        } else if nowClassName.count <= 6 {
-            height = 2 * 45 + 10
-        } else {
-            height = 3 * 45 + 10
-        }
-        
+        let height : Int = self.height()
         let x : Int = 0
         let y : Int = Int((tableView.tableHeaderView?.frame.maxY)!)
         let width = Int(self.view.frame.width)
@@ -138,6 +132,7 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
         //注册一个cell
         collectionView!.register(HotCell.self, forCellWithReuseIdentifier:"HotCell")
         collectionView?.backgroundColor = Helper.backgroundColor
+        collectionView?.alpha = 0;
         self.tableView.addSubview(collectionView!)
 //        saveData()
         
@@ -261,18 +256,21 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         self.tableView.frame = CGRect(x: 0, y: -55, width: self.tableView.frame.width, height: self.tableView.frame.height)
         searchBar.setShowsCancelButton(true, animated: true)
-        // 存储数据
-//        let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last
-//        let path = (paths! as NSString).appendingPathComponent("data.plist")
-////        let path = paths?.appe
-////        t("Data.plist")
-//        let string = searchBar.text
-//        let array : NSMutableArray
-//        array.add(string)
-//        array.write(toFile: path, atomically: true)
-        //获取SavdeIntArray变量
+       
         let d = UserDefaults.standard
         nowClassName = d.array(forKey: "SavedIntArray") as! [String]
+        if nowClassName.count > 0 {
+            collectionView?.alpha = 1
+        } else {
+            collectionView?.alpha = 0
+        }
+        
+        let height : Int = self.height()
+        let x : Int = 0
+        let y : Int = Int((tableView.tableHeaderView?.frame.maxY)!)
+        let width = Int(self.view.frame.width)
+        collectionView?.frame = CGRect(x: x, y: y, width: width, height: height)
+        collectionView?.reloadData()
         
     }
 
@@ -285,12 +283,21 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
             if array.contains(validText as NSString) {
                 return
             }
-            array.append(validText as NSString)
+            if array.count > 12 {
+                array.remove(at: array.count - 1)
+            } else {
+                
+            }
+            array.insert(validText as NSString, at: 0)
         }
         
         let defaults = UserDefaults.standard
         defaults.set(array, forKey: "SavedIntArray")
+        
+        collectionView?.alpha = 0
     }
+    
+    
     
     var array = [String]()
     func searchBar(_ searchBar:UISearchBar, textDidChange searchText:String) {
@@ -299,8 +306,21 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
         topics = []
         tableView.reloadData()
         autoRefresh()
-        
     }
+    
+    func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if range.location <= 10 {
+            return true
+        }
+            return false
+    }
+//    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+//        if (searchBar.text?.count)! > 10 {
+//            return false
+//        }
+//        return true
+//        
+//    }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
@@ -308,6 +328,25 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
         topics = []
         tableView.reloadData()
         autoRefresh()
+        
+        collectionView?.alpha = 0
+        let d = UserDefaults.standard
+        var array = d.array(forKey: "SavedIntArray")  as? [NSString] ?? [NSString]()
+        if let validText = searchBar.text {
+            if array.contains(validText as NSString) {
+                return
+            }
+            if array.count >= 12 {
+                array.remove(at: array.count - 1)
+            } else {
+                
+            }
+            array.insert(validText as NSString, at: 0)
+        }
+        
+        let defaults = UserDefaults.standard
+        defaults.set(array, forKey: "SavedIntArray")
+
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -315,6 +354,8 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
         searchBar.setShowsCancelButton(false, animated: true)
         searchBar.text = ""
         searchBarSearchButtonClicked(searchBar)
+        
+        collectionView?.alpha = 0
     }
 
     func user() {
@@ -354,6 +395,22 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
         return cell
         
         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+          searchBar.text = nowClassName[indexPath.row]
+    }
+    
+    func height() -> Int{
+        if nowClassName.count <= 3 {
+            return 1 * 45 + 10
+        } else if nowClassName.count <= 6 {
+             return  2 * 45 + 10
+        } else if nowClassName.count <= 9{
+             return  3 * 45 + 10
+        } else {
+             return  4 * 45 + 10
+        }
     }
 }
 
