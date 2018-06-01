@@ -12,8 +12,9 @@ import SwiftyJSON
 import TPKeyboardAvoiding
 import UINavigationBar_Addition
 import UIKit
+import SwiftyPlistManager
 
-class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, UIToolbarDelegate {
+class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, UIToolbarDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
 
     var emptyView = EmptyView()
     var failureView = FailureView()
@@ -25,6 +26,13 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
     var toolbar = UIToolbar()
     var topRefreshControl = UIRefreshControl()
     var topics: JSON = []
+    var nowClassName = [String]()
+    var surplusClassName = [String]()
+    
+    var collectionView : UICollectionView?
+    var count = 0;
+    
+    
 
 
     override func viewDidLoad() {
@@ -32,7 +40,7 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "UserIcon"), style: .plain, target: self, action: #selector(user))
         navigationItem.title = "社区"
         view.backgroundColor = Helper.backgroundColor
-
+        
         tableView.allowsMultipleSelection = false
         tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         tableView.backgroundColor = .clear
@@ -90,6 +98,11 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
 //            //标题颜色
 //            navigation.navigationBar.titleTextAttributes = dict as? [String : AnyObject]
         self.present(navigation, animated: true, completion: nil)
+        
+        SwiftyPlistManager.shared.start(plistNames: ["Data"], logging: true)
+        
+        let d = UserDefaults.standard
+        nowClassName = d.array(forKey: "SavedIntArray") as! [String]
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -98,6 +111,38 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
         traitCollectionDidChange(nil)
         if topics.count == 0 { autoRefresh() }
         Helper.trackView(self)
+        
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width:80,height:35)
+        //列间距,行间距,偏移
+        layout.minimumInteritemSpacing = 5
+        layout.minimumLineSpacing = 10
+        layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10)
+        
+        var height : Int
+        if nowClassName.count <= 3 {
+            height = 1 * 45 + 10
+        } else if nowClassName.count <= 6 {
+            height = 2 * 45 + 10
+        } else {
+            height = 3 * 45 + 10
+        }
+        
+        let x : Int = 0
+        let y : Int = Int((tableView.tableHeaderView?.frame.maxY)!)
+        let width = Int(self.view.frame.width)
+        collectionView = UICollectionView.init(frame: CGRect(x: x, y: y, width: width, height: height), collectionViewLayout: layout)
+        collectionView?.delegate = self
+        collectionView?.dataSource = self;
+        //注册一个cell
+        collectionView!.register(HotCell.self, forCellWithReuseIdentifier:"HotCell")
+        collectionView?.backgroundColor = Helper.backgroundColor
+        self.tableView.addSubview(collectionView!)
+//        saveData()
+        
+        
+    
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -216,18 +261,45 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         self.tableView.frame = CGRect(x: 0, y: -55, width: self.tableView.frame.width, height: self.tableView.frame.height)
         searchBar.setShowsCancelButton(true, animated: true)
+        // 存储数据
+//        let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last
+//        let path = (paths! as NSString).appendingPathComponent("data.plist")
+////        let path = paths?.appe
+////        t("Data.plist")
+//        let string = searchBar.text
+//        let array : NSMutableArray
+//        array.add(string)
+//        array.write(toFile: path, atomically: true)
+        //获取SavdeIntArray变量
+        let d = UserDefaults.standard
+        nowClassName = d.array(forKey: "SavedIntArray") as! [String]
+        
     }
 
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         searchBar.setShowsCancelButton(false, animated: true)
+        
+        let d = UserDefaults.standard
+        var array = d.array(forKey: "SavedIntArray")  as? [NSString] ?? [NSString]()
+        if let validText = searchBar.text {
+            if array.contains(validText as NSString) {
+                return
+            }
+            array.append(validText as NSString)
+        }
+        
+        let defaults = UserDefaults.standard
+        defaults.set(array, forKey: "SavedIntArray")
     }
     
+    var array = [String]()
     func searchBar(_ searchBar:UISearchBar, textDidChange searchText:String) {
         
         parameters["query"].string = searchBar.text != "" ? searchBar.text : nil
         topics = []
         tableView.reloadData()
         autoRefresh()
+        
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -256,6 +328,33 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
         tableView.reloadData()
         _ = navigationController?.popToViewController(self, animated: true)
     }
+    
+    //每个区的item个数
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return nowClassName.count
+        
+    }
+    
+    
+    //分区个数
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    //自定义cell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HotCell", for: indexPath) as! HotCell
+        cell.backgroundColor = UIColor.green
+        
+        cell.label.text = nowClassName[indexPath.row];
+        //        self.nowClassName[indexPath.item]
+        
+        return cell
+        
+        
+    }
 }
 
 
@@ -276,3 +375,8 @@ extension TopicsController: UIViewControllerPreviewingDelegate {
         splitViewController?.showDetailViewController(UINavigationController(rootViewController: viewControllerToCommit), sender: self)
     }
 }
+
+
+
+
+

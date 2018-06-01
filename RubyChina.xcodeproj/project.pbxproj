@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B0C7592B20BD388400BC321A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C7592A20BD388400BC321A /* MainViewController.swift */; };
+		B0FF638E20C13811002C68FA /* HotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FF638D20C13811002C68FA /* HotCell.swift */; };
 		B21B37C41E0443AA00DD4FF3 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21B37C31E0443AA00DD4FF3 /* JSON.swift */; };
 		B22DE0DF1B1951B200888C0D /* ComposeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22DE0DE1B1951B200888C0D /* ComposeController.swift */; };
 		B24128AC1B2D3FDC0006AEF9 /* DateTools.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B24128AB1B2D3FDC0006AEF9 /* DateTools.bundle */; };
@@ -49,6 +50,7 @@
 		66F00C90339BFEFF2988116C /* Pods-RubyChina.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RubyChina.release.xcconfig"; path = "Pods/Target Support Files/Pods-RubyChina/Pods-RubyChina.release.xcconfig"; sourceTree = "<group>"; };
 		9D16BBFE6D5CF11FD5D5AEFA /* Pods-RubyChina.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RubyChina.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RubyChina/Pods-RubyChina.debug.xcconfig"; sourceTree = "<group>"; };
 		B0C7592A20BD388400BC321A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		B0FF638D20C13811002C68FA /* HotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotCell.swift; sourceTree = "<group>"; };
 		B21B37C31E0443AA00DD4FF3 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		B22DE0DE1B1951B200888C0D /* ComposeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeController.swift; sourceTree = "<group>"; };
 		B24128AB1B2D3FDC0006AEF9 /* DateTools.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = DateTools.bundle; path = ../Pods/DateTools/DateTools/DateTools.bundle; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				B2FBE70D1D5D8C5700E5DDE8 /* UIViewController.swift */,
 				B2F2180E1B18B55600150DDF /* UserController.swift */,
 				B2F2180F1B18B55600150DDF /* WebViewController.swift */,
+				B0FF638D20C13811002C68FA /* HotCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				B2D221C71B0B63A100007E79 /* Frameworks */,
 				B2D221C81B0B63A100007E79 /* Resources */,
 				B281D6B51AAEDB8CEE3F4960 /* [CP] Embed Pods Frameworks */,
+				5F43365479297A0DA0E18B7B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -274,7 +278,7 @@
 				TargetAttributes = {
 					B2D221C91B0B63A100007E79 = {
 						CreatedOnToolsVersion = 6.3.2;
-						DevelopmentTeam = 2H698CYD3M;
+						DevelopmentTeam = DURRFPU5L8;
 						LastSwiftMigration = 0820;
 					};
 					B2D221DE1B0B63A200007E79 = {
@@ -341,6 +345,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		5F43365479297A0DA0E18B7B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RubyChina/Pods-RubyChina-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B281D6B51AAEDB8CEE3F4960 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -360,6 +379,7 @@
 				"${BUILT_PRODUCTS_DIR}/SZTextView/SZTextView.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyPlistManager/SwiftyPlistManager.framework",
 				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
 				"${BUILT_PRODUCTS_DIR}/UINavigationBar+Addition/UINavigationBar_Addition.framework",
 			);
@@ -377,6 +397,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SZTextView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyPlistManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UINavigationBar_Addition.framework",
 			);
@@ -414,6 +435,7 @@
 				B2F217FB1B18B53600150DDF /* Helper.swift in Sources */,
 				B2F218051B18B54000150DDF /* UserNameCell.swift in Sources */,
 				B2F218071B18B54000150DDF /* LoadingView.swift in Sources */,
+				B0FF638E20C13811002C68FA /* HotCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,12 +555,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 2H698CYD3M;
+				DEVELOPMENT_TEAM = DURRFPU5L8;
 				INFOPLIST_FILE = RubyChina/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.secipin.ruby-china22";
+				PRODUCT_BUNDLE_IDENTIFIER = com.secipin.ruby;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "RubyChina/Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Pods/**";
 			};
@@ -552,12 +576,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 2H698CYD3M;
+				DEVELOPMENT_TEAM = DURRFPU5L8;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = RubyChina/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.secipin.ruby-china22";
+				PRODUCT_BUNDLE_IDENTIFIER = com.secipin.ruby;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "RubyChina/Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Pods/**";
 			};
