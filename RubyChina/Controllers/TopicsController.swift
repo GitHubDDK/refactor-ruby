@@ -379,10 +379,11 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HotCell", for: indexPath) as! HotCell
-        cell.backgroundColor = UIColor.green
+        cell.backgroundColor = UIColor.init(red: 135/255.0, green: 0, blue: 23/255.0, alpha: 1)
+        cell.label.textAlignment = NSTextAlignment.center
         
         cell.label.text = nowClassName[indexPath.row];
-        //        self.nowClassName[indexPath.item]
+        cell.label.textColor = UIColor.white
         
         return cell
         
