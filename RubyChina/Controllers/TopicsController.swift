@@ -26,7 +26,7 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
     var toolbar = UIToolbar()
     var topRefreshControl = UIRefreshControl()
     var topics: JSON = []
-    var nowClassName = [String]()
+    var nowClassName = [String?]()
     var surplusClassName = [String]()
     
     var collectionView : UICollectionView?
@@ -48,12 +48,11 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
         tableView.backgroundColor = .clear
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.frame = view.bounds
+        tableView.frame = CGRect(x: 0, y: -60, width: tableView.frame.size.width, height: tableView.frame.size.height)
         tableView.register(TopicCell.self, forCellReuseIdentifier: "Cell")
         tableView.tableFooterView = UIView()
         view.addSubview(tableView)
 
-//        let searchBar = UISearchBar()
         searchBar.autocapitalizationType = .none
         searchBar.autocorrectionType = .no
         searchBar.delegate = self
@@ -94,17 +93,10 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
         }
         
         let navigation = UINavigationController(rootViewController: SignInController())
-//            navigation.navigationBar.tintColor = UIColor.white //item 字体颜色
-//            navigation.navigationBar.barTintColor = UIColor.yellow //背景颜色
-//            let dict:NSDictionary = [NSForegroundColorAttributeName: UIColor.white,NSFontAttributeName : UIFont.boldSystemFont(ofSize: 18)]
-//            //标题颜色
-//            navigation.navigationBar.titleTextAttributes = dict as? [String : AnyObject]
         self.present(navigation, animated: true, completion: nil)
         
         SwiftyPlistManager.shared.start(plistNames: ["Data"], logging: true)
         
-        let d = UserDefaults.standard
-        nowClassName = d.array(forKey: "SavedIntArray") as! [String]
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -134,10 +126,6 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
         collectionView?.backgroundColor = Helper.backgroundColor
         collectionView?.alpha = 0;
         self.tableView.addSubview(collectionView!)
-//        saveData()
-        
-        
-    
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -147,13 +135,13 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
     func autoRefresh() {
         if refreshing { return }
         loadingView.show()
-//        self.tableView.frame = CGRect(x: 0, y: 0, width: 320, height: 568)
+        tableView.frame = view.bounds
         loadData()
     }
 
     func topRefresh() {
         if refreshing { topRefreshControl.endRefreshing(); return }
-        self.tableView.frame = CGRect(x: 0, y: -60, width: self.tableView.frame.width, height: self.tableView.frame.height)
+        tableView.frame = view.bounds
         topics = []
         loadData()
     }
@@ -254,11 +242,15 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
     }
 
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        self.tableView.frame = CGRect(x: 0, y: -55, width: self.tableView.frame.width, height: self.tableView.frame.height)
+        //self.tableView.frame = CGRect(x: 0, y: -55, width: self.tableView.frame.width, height: self.tableView.frame.height)
+        tableView.frame = view.bounds
         searchBar.setShowsCancelButton(true, animated: true)
        
         let d = UserDefaults.standard
-        nowClassName = d.array(forKey: "SavedIntArray") as! [String]
+        if ((d.array(forKey: "SavedIntArray") as? [String]) != nil) {
+            nowClassName = (d.array(forKey: "SavedIntArray") as? [String])!
+        }
+        
         if nowClassName.count > 0 {
             collectionView?.alpha = 1
         } else {
