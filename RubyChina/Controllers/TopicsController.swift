@@ -130,6 +130,7 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
 
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.navigationBar.showBottomHairline()
+        
     }
 
     func autoRefresh() {

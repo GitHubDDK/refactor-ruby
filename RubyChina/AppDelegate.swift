@@ -30,6 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = MainViewController()
         window?.tintColor = Helper.tintColor
         window?.makeKeyAndVisible()
+        
+        //注册URL Loading System协议，让每一个请求都会经过MyURLProtocol处理
+        URLProtocol.registerClass(MyURLProtocol.self)
 
         return true
     }
@@ -49,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - Core Data stack
     lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "hangge_1841")
+        let container = NSPersistentContainer(name: "RubyChina")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 
