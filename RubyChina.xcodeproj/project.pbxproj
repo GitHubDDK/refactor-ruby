@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B53076220C3BD3700D6C9AE /* RubyChina.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B53076020C3BD3700D6C9AE /* RubyChina.xcdatamodeld */; };
 		B0C7592B20BD388400BC321A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C7592A20BD388400BC321A /* MainViewController.swift */; };
 		B0FF638E20C13811002C68FA /* HotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FF638D20C13811002C68FA /* HotCell.swift */; };
 		B21B37C41E0443AA00DD4FF3 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21B37C31E0443AA00DD4FF3 /* JSON.swift */; };
@@ -47,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4B53075E20C3BC6C00D6C9AE /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		4B53076120C3BD3700D6C9AE /* RubyChina.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RubyChina.xcdatamodel; sourceTree = "<group>"; };
 		66F00C90339BFEFF2988116C /* Pods-RubyChina.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RubyChina.release.xcconfig"; path = "Pods/Target Support Files/Pods-RubyChina/Pods-RubyChina.release.xcconfig"; sourceTree = "<group>"; };
 		9D16BBFE6D5CF11FD5D5AEFA /* Pods-RubyChina.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RubyChina.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RubyChina/Pods-RubyChina.debug.xcconfig"; sourceTree = "<group>"; };
 		B0C7592A20BD388400BC321A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -142,6 +145,7 @@
 				B2D221F51B0F53A200007E79 /* Libraries */,
 				B2D221CD1B0B63A100007E79 /* Supporting Files */,
 				B2D221F61B0F53A200007E79 /* Views */,
+				4B53076020C3BD3700D6C9AE /* RubyChina.xcdatamodeld */,
 			);
 			path = RubyChina;
 			sourceTree = "<group>";
@@ -218,6 +222,7 @@
 		C0D154EE6622CC1F87332BFA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4B53075E20C3BC6C00D6C9AE /* CoreData.framework */,
 				DB9E1FE7F75A5D0D9174BB74 /* Pods.framework */,
 				D275C604818F1099340FBE6E /* Pods_RubyChina.framework */,
 			);
@@ -402,6 +407,7 @@
 				B2F217FA1B18B53600150DDF /* Defaults.swift in Sources */,
 				B0C7592B20BD388400BC321A /* MainViewController.swift in Sources */,
 				B2F218081B18B54000150DDF /* FailureView.swift in Sources */,
+				4B53076220C3BD3700D6C9AE /* RubyChina.xcdatamodeld in Sources */,
 				B2F218141B18B55600150DDF /* UserController.swift in Sources */,
 				B2F218091B18B54000150DDF /* EmptyView.swift in Sources */,
 				B2F218111B18B55600150DDF /* SignInController.swift in Sources */,
@@ -637,6 +643,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4B53076020C3BD3700D6C9AE /* RubyChina.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4B53076120C3BD3700D6C9AE /* RubyChina.xcdatamodel */,
+			);
+			currentVersion = 4B53076120C3BD3700D6C9AE /* RubyChina.xcdatamodel */;
+			path = RubyChina.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B2D221C21B0B63A100007E79 /* Project object */;
 }
