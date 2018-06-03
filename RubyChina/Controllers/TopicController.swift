@@ -29,6 +29,10 @@ class TopicController: UIViewController, UITableViewDataSource, UITableViewDeleg
 
     override func viewDidLoad() {
         
+    
+        //注册URL Loading System协议，让每一个请求都会经过MyURLProtocol处理
+        URLProtocol.registerClass(MyURLProtocol.self)
+    
         navigationItem.leftBarButtonItem = navigationController?.viewControllers.count == 1 ? splitViewController?.displayModeButtonItem : nil
         navigationItem.leftItemsSupplementBackButton = true
         navigationItem.rightBarButtonItems = [
@@ -94,9 +98,7 @@ class TopicController: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
 
     func loadData() {
-        
-        //注册URL Loading System协议，让每一个请求都会经过MyURLProtocol处理
-        //URLProtocol.registerClass(MyURLProtocol.self)
+    
         
         if topic["body_html"].string != nil { loadReplies(); return }
         if refreshing { return }

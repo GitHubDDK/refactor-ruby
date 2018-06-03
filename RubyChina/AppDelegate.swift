@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         //注册URL Loading System协议，让每一个请求都会经过MyURLProtocol处理
-        URLProtocol.registerClass(MyURLProtocol.self)
+        //URLProtocol.registerClass(MyURLProtocol.self)
 
         return true
     }

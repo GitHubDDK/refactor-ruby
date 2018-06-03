@@ -38,6 +38,10 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
 
 
     override func viewDidLoad() {
+        
+        //注册URL Loading System协议，让每一个请求都会经过MyURLProtocol处理
+        //URLProtocol.registerClass(MyURLProtocol.self)
+        
         automaticallyAdjustsScrollViewInsets = false
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "UserIcon"), style: .plain, target: self, action: #selector(user))
         navigationItem.title = "社区"
@@ -48,7 +52,6 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
         tableView.backgroundColor = .clear
         tableView.dataSource = self
         tableView.delegate = self
-        //tableView.frame = CGRect(x: 0, y: -60, width: tableView.frame.size.width, height: tableView.frame.size.height)
         tableView.register(TopicCell.self, forCellReuseIdentifier: "Cell")
         tableView.tableFooterView = UIView()
         view.addSubview(tableView)
@@ -134,20 +137,18 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
     }
     
     override func viewWillLayoutSubviews() {
-        tableView.frame = CGRect(x: 0, y: -60, width: tableView.frame.size.width, height: tableView.frame.size.height)
+        tableView.frame = CGRect(x: 0, y: -60, width: tableView.frame.size.width, height: tableView.frame.size.height + 60)
     }
     
     func autoRefresh() {
         if refreshing { return }
         loadingView.show()
-//        tableView.frame = view.bounds
-        tableView.frame = CGRect(x: 0, y: -60, width: view.frame.size.width, height: view.frame.size.height)
+        tableView.frame = CGRect(x: 0, y: -60, width: view.frame.size.width, height: view.frame.size.height + 60)
         loadData()
     }
 
     func topRefresh() {
         if refreshing { topRefreshControl.endRefreshing(); return }
-        tableView.frame = view.bounds
       
         topics = []
         loadData()
@@ -249,8 +250,7 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
     }
 
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        //self.tableView.frame = CGRect(x: 0, y: -55, width: self.tableView.frame.width, height: self.tableView.frame.height)
-        tableView.frame = view.bounds
+
         searchBar.setShowsCancelButton(true, animated: true)
        
         let d = UserDefaults.standard

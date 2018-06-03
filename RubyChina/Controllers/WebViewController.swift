@@ -19,9 +19,6 @@ class WebViewController: UIViewController, UIWebViewDelegate {
 
     override func viewDidLoad() {
         
-        //注册URL Loading System协议，让每一个请求都会经过MyURLProtocol处理
-        URLProtocol.registerClass(MyURLProtocol.self)
-        
         navigationItem.leftBarButtonItem = navigationController?.viewControllers.count == 1 ? splitViewController?.displayModeButtonItem : nil
         navigationItem.leftItemsSupplementBackButton = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(action))
