@@ -18,4 +18,5 @@ target :RubyChina do
     pod 'UINavigationBar+Addition'
     pod 'SnapKit', '~> 3.2'
     pod 'SwiftyPlistManager'
+    pod 'SQLite.swift', '~> 0.11.5'
 end

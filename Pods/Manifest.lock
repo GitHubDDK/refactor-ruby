@@ -25,7 +25,11 @@ PODS:
   - MGSwipeTableCell (1.5.6)
   - RegExCategories (1.0)
   - SnapKit (3.2.0)
+  - SQLite.swift (0.11.5):
+    - SQLite.swift/standard (= 0.11.5)
+  - SQLite.swift/standard (0.11.5)
   - SwiftyJSON (3.1.3)
+  - SwiftyPlistManager (1.0.2)
   - SZTextView (1.2.2)
   - TPKeyboardAvoiding (1.3)
   - "UINavigationBar+Addition (1.3.0)"
@@ -41,7 +45,9 @@ DEPENDENCIES:
   - MGSwipeTableCell
   - RegExCategories
   - SnapKit (~> 3.2)
+  - SQLite.swift (~> 0.11.5)
   - SwiftyJSON
+  - SwiftyPlistManager
   - SZTextView
   - TPKeyboardAvoiding
   - "UINavigationBar+Addition"
@@ -59,7 +65,9 @@ SPEC REPOS:
     - MGSwipeTableCell
     - RegExCategories
     - SnapKit
+    - SQLite.swift
     - SwiftyJSON
+    - SwiftyPlistManager
     - SZTextView
     - TPKeyboardAvoiding
     - "UINavigationBar+Addition"
@@ -76,11 +84,13 @@ SPEC CHECKSUMS:
   MGSwipeTableCell: 616700eb0ffd1c611ba909066cb7fd739790a0a7
   RegExCategories: e68befacacd5bda853c88f70ec745cb2d0cfb89c
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
+  SQLite.swift: 6e5356850bb1791459f8c16d6ee9195b28714a2e
   SwiftyJSON: 38a8ea2006779c0fc4c310cb2ee8195327740faf
+  SwiftyPlistManager: 5895924cccb7fe28deccbe14890e8aed78ae78ae
   SZTextView: 3a81174dce0710a9ab069bc73a813e6df53b9c82
   TPKeyboardAvoiding: a5138f318c06fb3e151f886e18ce4a72695d9cbe
   "UINavigationBar+Addition": 433c16a992cfb73c3141b1f7fcaa93169c15cfa0
 
-PODFILE CHECKSUM: 1dc805e8f6a05e70d619d78f45b203ffd2251f7a
+PODFILE CHECKSUM: af33e91339e16d1ddd7eaf9aa3e4e2c98d878276
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.5.3
