@@ -48,7 +48,7 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
         tableView.backgroundColor = .clear
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.frame = CGRect(x: 0, y: -60, width: tableView.frame.size.width, height: tableView.frame.size.height)
+        //tableView.frame = CGRect(x: 0, y: -60, width: tableView.frame.size.width, height: tableView.frame.size.height)
         tableView.register(TopicCell.self, forCellReuseIdentifier: "Cell")
         tableView.tableFooterView = UIView()
         view.addSubview(tableView)
@@ -132,17 +132,23 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
         navigationController?.navigationBar.showBottomHairline()
         
     }
-
+    
+    override func viewWillLayoutSubviews() {
+        tableView.frame = CGRect(x: 0, y: -60, width: tableView.frame.size.width, height: tableView.frame.size.height)
+    }
+    
     func autoRefresh() {
         if refreshing { return }
         loadingView.show()
-        tableView.frame = view.bounds
+//        tableView.frame = view.bounds
+        tableView.frame = CGRect(x: 0, y: -60, width: view.frame.size.width, height: view.frame.size.height)
         loadData()
     }
 
     func topRefresh() {
         if refreshing { topRefreshControl.endRefreshing(); return }
         tableView.frame = view.bounds
+      
         topics = []
         loadData()
     }
