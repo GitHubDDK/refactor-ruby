@@ -358,7 +358,8 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
     }
 
     func user() {
-        navigationController?.pushViewController(UserController(), animated: true)
+        //navigationController?.pushViewController(UserController(), animated: true)
+        navigationController?.pushViewController(HomeNodesController(), animated: true)
     }
 
     func selectNode(_ node: JSON) {

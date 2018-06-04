@@ -10,6 +10,7 @@ import AFNetworking
 import MBProgressHUD
 import SZTextView
 import SwiftyJSON
+import SnapKit
 import UIKit
 
 class ComposeController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
@@ -39,6 +40,7 @@ class ComposeController: UIViewController, UITableViewDataSource, UITableViewDel
         tableView.isScrollEnabled = false
         tableView.tableFooterView = UIView()
         view.addSubview(tableView)
+        
 
         failureView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(loadData)))
         view.addSubview(failureView)

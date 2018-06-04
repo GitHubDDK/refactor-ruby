@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A1DAB7020C50BA7005ED7BA /* HomeNodesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1DAB6F20C50BA7005ED7BA /* HomeNodesController.swift */; };
+		0A1DAB7220C50E10005ED7BA /* HomeNodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1DAB7120C50E10005ED7BA /* HomeNodeCell.swift */; };
+		0A1DAB7420C516F9005ED7BA /* HomeNodeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1DAB7320C516F9005ED7BA /* HomeNodeHeader.swift */; };
 		4B53076220C3BD3700D6C9AE /* RubyChina.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B53076020C3BD3700D6C9AE /* RubyChina.xcdatamodeld */; };
 		4B5307A120C3C08F00D6C9AE /* MyURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5307A020C3C08F00D6C9AE /* MyURLProtocol.swift */; };
 		4B5307A420C3CA9100D6C9AE /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B53075E20C3BC6C00D6C9AE /* CoreData.framework */; };
@@ -50,6 +53,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A1DAB6F20C50BA7005ED7BA /* HomeNodesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNodesController.swift; sourceTree = "<group>"; };
+		0A1DAB7120C50E10005ED7BA /* HomeNodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNodeCell.swift; sourceTree = "<group>"; };
+		0A1DAB7320C516F9005ED7BA /* HomeNodeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNodeHeader.swift; sourceTree = "<group>"; };
 		4B53075E20C3BC6C00D6C9AE /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		4B53076120C3BD3700D6C9AE /* RubyChina.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RubyChina.xcdatamodel; sourceTree = "<group>"; };
 		4B5307A020C3C08F00D6C9AE /* MyURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyURLProtocol.swift; sourceTree = "<group>"; };
@@ -186,6 +192,7 @@
 			children = (
 				B0C7592A20BD388400BC321A /* MainViewController.swift */,
 				B22DE0DE1B1951B200888C0D /* ComposeController.swift */,
+				0A1DAB6F20C50BA7005ED7BA /* HomeNodesController.swift */,
 				B2F2180A1B18B55600150DDF /* NodesController.swift */,
 				B2F2180B1B18B55600150DDF /* SignInController.swift */,
 				B263B52D1B205B0A00C56CB0 /* SplitViewController.swift */,
@@ -195,6 +202,8 @@
 				B2F2180E1B18B55600150DDF /* UserController.swift */,
 				B2F2180F1B18B55600150DDF /* WebViewController.swift */,
 				B0FF638D20C13811002C68FA /* HotCell.swift */,
+				0A1DAB7120C50E10005ED7BA /* HomeNodeCell.swift */,
+				0A1DAB7320C516F9005ED7BA /* HomeNodeHeader.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -287,7 +296,7 @@
 				TargetAttributes = {
 					B2D221C91B0B63A100007E79 = {
 						CreatedOnToolsVersion = 6.3.2;
-						DevelopmentTeam = DURRFPU5L8;
+						DevelopmentTeam = 2H698CYD3M;
 						LastSwiftMigration = 0820;
 					};
 					B2D221DE1B0B63A200007E79 = {
@@ -413,6 +422,7 @@
 				B0C7592B20BD388400BC321A /* MainViewController.swift in Sources */,
 				B2F218081B18B54000150DDF /* FailureView.swift in Sources */,
 				4B53076220C3BD3700D6C9AE /* RubyChina.xcdatamodeld in Sources */,
+				0A1DAB7020C50BA7005ED7BA /* HomeNodesController.swift in Sources */,
 				B2F218141B18B55600150DDF /* UserController.swift in Sources */,
 				B2F218091B18B54000150DDF /* EmptyView.swift in Sources */,
 				4B5307A120C3C08F00D6C9AE /* MyURLProtocol.swift in Sources */,
@@ -427,8 +437,10 @@
 				B2F218151B18B55600150DDF /* WebViewController.swift in Sources */,
 				B2F218041B18B54000150DDF /* TopicTitleCell.swift in Sources */,
 				B2FBE70E1D5D8C5700E5DDE8 /* UIViewController.swift in Sources */,
+				0A1DAB7420C516F9005ED7BA /* HomeNodeHeader.swift in Sources */,
 				B21B37C41E0443AA00DD4FF3 /* JSON.swift in Sources */,
 				B263B52E1B205B0B00C56CB0 /* SplitViewController.swift in Sources */,
+				0A1DAB7220C50E10005ED7BA /* HomeNodeCell.swift in Sources */,
 				B22DE0DF1B1951B200888C0D /* ComposeController.swift in Sources */,
 				B2F217FB1B18B53600150DDF /* Helper.swift in Sources */,
 				B2F218051B18B54000150DDF /* UserNameCell.swift in Sources */,
@@ -553,11 +565,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = DURRFPU5L8;
+				DEVELOPMENT_TEAM = 2H698CYD3M;
 				INFOPLIST_FILE = RubyChina/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.secipin.ruby;
+				PRODUCT_BUNDLE_IDENTIFIER = com.secipin.ruby22;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "RubyChina/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -574,12 +586,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = DURRFPU5L8;
+				DEVELOPMENT_TEAM = 2H698CYD3M;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = RubyChina/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.secipin.ruby;
+				PRODUCT_BUNDLE_IDENTIFIER = com.secipin.ruby22;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "RubyChina/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";

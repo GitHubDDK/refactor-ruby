@@ -21,6 +21,7 @@ class SignInController: UIViewController, UITableViewDataSource, UITableViewDele
 
 
     override func viewDidLoad() {
+        automaticallyAdjustsScrollViewInsets = false
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissNow))
         navigationItem.rightBarButtonItems = [
             UIBarButtonItem(title: "注册", style: .plain, target: self, action: #selector(signUp)),
