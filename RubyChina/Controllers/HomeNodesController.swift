@@ -8,15 +8,21 @@
 
 import UIKit
 import SnapKit
+import AFNetworking
+import SwiftyJSON
+
+
 let SCREEN_WIDTH = UIScreen.main.bounds.size.width
 let SCREEN_HEIGHT = UIScreen.main.bounds.size.height
 
 
 class HomeNodesController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
+    var failureView = FailureView()
+    var loadingView = LoadingView()
+    var nodes: JSON = []
     var collectionView : UICollectionView?
-    var dataArr = NSMutableArray()//数据源
-    var headerArr = NSMutableArray()//分组标题
+    
     let headerHeight : CGFloat = 30
     let cellHeight:CGFloat = 40
     let headerIdentifier : String = "headView"
@@ -25,11 +31,18 @@ class HomeNodesController: UIViewController,UICollectionViewDelegate,UICollectio
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        navigationItem.title = "主节点"
         view.backgroundColor = Helper.backgroundColor
         
         initView()
-        initData()
+        failureView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(loadData)))
+        view.addSubview(failureView)
+        view.addSubview(loadingView)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if nodes.count == 0 { loadData() }
+        Helper.trackView(self)
     }
     
     func initView(){
@@ -55,60 +68,47 @@ class HomeNodesController: UIViewController,UICollectionViewDelegate,UICollectio
         
     }
     
-    func initData(){
-        initHeaderData()
-        initSelectionData()
-        self.collectionView?.reloadData()
+    func loadData() {
+        if loadingView.refreshing { return }
+        failureView.hide()
+        loadingView.show()
+        let path = "/nodes/grouped.json"
+        AFHTTPSessionManager(baseURL: Helper.baseURL).get(path, parameters: nil, progress: nil, success: { task, responseObject in
+            self.loadingView.hide()
+            self.nodes = self.topicsController() != nil ? [["title": "全部", "nodes": [["name": "社区"]]]] : []
+            self.nodes = JSON(self.nodes.arrayValue + JSON(responseObject).arrayValue)
+            self.collectionView?.reloadData()
+            for i in 0 ..< self.nodes.count {
+                for j in 0 ..< self.nodes[i]["nodes"].count {
+                    let nodeId = self.nodes[i]["nodes"][j]["id"].intValue
+                    if nodeId == self.topicsController()?.parameters["node_id"].intValue || nodeId == self.composeController()?.topic["node_id"].intValue{
+                        self.collectionView?.scrollToItem(at: IndexPath(row: j, section: i), at: .top, animated: false)
+                    }
+                }
+            }
+        }) { task, error in
+            self.loadingView.hide()
+            self.failureView.show()
+        }
     }
     
     //返回多少个组
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return headerArr.count
+        return nodes.count
     }
     
     //返回多少个cell
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch section {
-        case 0: return 8
-        case 1: return 2
-        case 2: return 2
-        default: return 0
-        }
-
-       // return dataArr.count
+        return nodes[section]["nodes"].count
     }
     
     //返回自定义的cell
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath as IndexPath) as! HomeNodeCell
-        let title = dataArr[indexPath.row]
-        cell.titleLabel?.text = title as? String
+        let node = nodes[indexPath.section]["nodes"][indexPath.row]
+        let title: String? = node["name"].string
+        cell.titleLabel?.text = title
         return cell
-        
-    }
-    
-    func initHeaderData() {
-        
-        headerArr.add("社区")
-        headerArr.add("其他语言")
-        headerArr.add("社交")
-        
-    }
-    
-    func initSelectionData() {
-        
-        dataArr.add("Ruby China")
-        dataArr.add("Back-End")
-        dataArr.add("Front-End")
-        dataArr.add("活动")
-        dataArr.add("其他语言")
-        dataArr.add("图片")
-        dataArr.add("娱乐")
-        dataArr.add("科技")
-        dataArr.add("selection 9")
-        dataArr.add("selection 10")
-        dataArr.add("selection 11")
-        dataArr.add("selection 12")
         
     }
     
@@ -122,8 +122,7 @@ class HomeNodesController: UIViewController,UICollectionViewDelegate,UICollectio
         var header = HomeNodeHeader()
         if kind == UICollectionElementKindSectionHeader{
             header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerIdentifier, for: indexPath as IndexPath) as! HomeNodeHeader
-            let title:String = headerArr[indexPath.section] as! String
-            header.titleLabel?.text = title
+            header.titleLabel?.text = nodes[indexPath.section]["title"].string
         }
         return header
     }
@@ -141,7 +140,13 @@ class HomeNodesController: UIViewController,UICollectionViewDelegate,UICollectio
     }
     
 
+    func topicsController() -> TopicsController? {
+        return navigationController?.viewControllers.filter { ($0 as? TopicsController) != nil }.last as? TopicsController
+    }
     
+    func composeController() -> ComposeController? {
+        return navigationController?.viewControllers.filter { ($0 as? ComposeController) != nil }.last as? ComposeController
+    }
     
     
     
