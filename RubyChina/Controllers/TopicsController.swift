@@ -359,7 +359,9 @@ class TopicsController: UIViewController, UISearchBarDelegate, UITableViewDataSo
 
     func user() {
         //navigationController?.pushViewController(UserController(), animated: true)
-        navigationController?.pushViewController(HomeNodesController(), animated: true)
+        let controller = HomeNodesController()
+        controller.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(controller, animated: true)
     }
 
     func selectNode(_ node: JSON) {

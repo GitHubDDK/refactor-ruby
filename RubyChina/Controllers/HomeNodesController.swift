@@ -106,8 +106,8 @@ class HomeNodesController: UIViewController,UICollectionViewDelegate,UICollectio
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath as IndexPath) as! HomeNodeCell
         let node = nodes[indexPath.section]["nodes"][indexPath.row]
-        let title: String? = node["name"].string
-        cell.titleLabel?.text = title
+        cell.titleLabel?.textColor = topicsController()?.parameters["node_id"].intValue == node["id"].intValue || composeController()?.topic["node_id"].intValue == node["id"].intValue ? UIColor.gray : UIColor.black
+        cell.titleLabel?.text = node["name"].string
         return cell
         
     }
@@ -131,6 +131,10 @@ class HomeNodesController: UIViewController,UICollectionViewDelegate,UICollectio
         let cell = collectionView.cellForItem(at: indexPath as IndexPath)
         cell!.layer.cornerRadius = 4
         cell?.backgroundColor = UIColor.yellow
+        
+        let node = nodes[indexPath.section]["nodes"][indexPath.row]
+        topicsController()?.selectNode(node)
+        composeController()?.selectNode(node)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
